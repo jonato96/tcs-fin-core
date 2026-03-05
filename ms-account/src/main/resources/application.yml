@@ -7,7 +7,7 @@ spring:
   application:
     name: ms-account
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:db_account}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:tcs_account}
     username: ${DB_USER:postgres}
     password: ${DB_PASS:postgres}
     driver-class-name: org.postgresql.Driver
