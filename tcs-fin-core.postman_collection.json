@@ -5,12 +5,8 @@
   },
   "variable": [
     {
-      "key": "customer_url",
-      "value": "http://localhost:8081/api/v1"
-    },
-    {
-      "key": "account_url",
-      "value": "http://localhost:8082/api/v1"
+      "key": "base_url",
+      "value": "http://localhost:8080/api/v1"
     }
   ],
   "item": [
@@ -22,7 +18,7 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{customer_url}}/customers", "host": ["{{customer_url}}"], "path": ["customers"] },
+            "url": { "raw": "{{base_url}}/customers", "host": ["{{base_url}}"], "path": ["customers"] },
             "body": {
               "mode": "raw",
               "raw": "{\n  \"name\": \"Jose Lema\",\n  \"gender\": \"MALE\",\n  \"age\": 30,\n  \"identification\": \"1234567890\",\n  \"address\": \"Otavalo sn y principal\",\n  \"phone\": \"098254785\",\n  \"password\": \"1234\"\n}"
@@ -34,7 +30,7 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{customer_url}}/customers", "host": ["{{customer_url}}"], "path": ["customers"] },
+            "url": { "raw": "{{base_url}}/customers", "host": ["{{base_url}}"], "path": ["customers"] },
             "body": {
               "mode": "raw",
               "raw": "{\n  \"name\": \"Marianela Montalvo\",\n  \"gender\": \"FEMALE\",\n  \"age\": 25,\n  \"identification\": \"0987654321\",\n  \"address\": \"Amazonas y NNUU\",\n  \"phone\": \"097548965\",\n  \"password\": \"5678\"\n}"
@@ -46,7 +42,7 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{customer_url}}/customers", "host": ["{{customer_url}}"], "path": ["customers"] },
+            "url": { "raw": "{{base_url}}/customers", "host": ["{{base_url}}"], "path": ["customers"] },
             "body": {
               "mode": "raw",
               "raw": "{\n  \"name\": \"Juan Osorio\",\n  \"gender\": \"MALE\",\n  \"age\": 35,\n  \"identification\": \"1122334455\",\n  \"address\": \"13 junio y Equinoccial\",\n  \"phone\": \"098874587\",\n  \"password\": \"1245\"\n}"
@@ -57,14 +53,14 @@
           "name": "Find All Customers",
           "request": {
             "method": "GET",
-            "url": { "raw": "{{customer_url}}/customers", "host": ["{{customer_url}}"], "path": ["customers"] }
+            "url": { "raw": "{{base_url}}/customers", "host": ["{{base_url}}"], "path": ["customers"] }
           }
         },
         {
           "name": "Find Customer by ID",
           "request": {
             "method": "GET",
-            "url": { "raw": "{{customer_url}}/customers/1", "host": ["{{customer_url}}"], "path": ["customers", "1"] }
+            "url": { "raw": "{{base_url}}/customers/1", "host": ["{{base_url}}"], "path": ["customers", "1"] }
           }
         },
         {
@@ -72,7 +68,7 @@
           "request": {
             "method": "PUT",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{customer_url}}/customers/1", "host": ["{{customer_url}}"], "path": ["customers", "1"] },
+            "url": { "raw": "{{base_url}}/customers/1", "host": ["{{base_url}}"], "path": ["customers", "1"] },
             "body": {
               "mode": "raw",
               "raw": "{\n  \"name\": \"Jose Lema\",\n  \"gender\": \"MALE\",\n  \"age\": 31,\n  \"identification\": \"1234567890\",\n  \"address\": \"Otavalo sn y principal\",\n  \"phone\": \"098254785\",\n  \"password\": \"1234\"\n}"
@@ -83,7 +79,7 @@
           "name": "Delete Customer",
           "request": {
             "method": "DELETE",
-            "url": { "raw": "{{customer_url}}/customers/1", "host": ["{{customer_url}}"], "path": ["customers", "1"] }
+            "url": { "raw": "{{base_url}}/customers/1", "host": ["{{base_url}}"], "path": ["customers", "1"] }
           }
         }
       ]
@@ -96,7 +92,7 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{account_url}}/accounts", "host": ["{{account_url}}"], "path": ["accounts"] },
+            "url": { "raw": "{{base_url}}/accounts", "host": ["{{base_url}}"], "path": ["accounts"] },
             "body": {
               "mode": "raw",
               "raw": "{\n  \"accountNumber\": \"478758\",\n  \"accountType\": \"SAVING\",\n  \"initialBalance\": 2000,\n  \"active\": true,\n  \"customerId\": 1\n}"
@@ -108,7 +104,7 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{account_url}}/accounts", "host": ["{{account_url}}"], "path": ["accounts"] },
+            "url": { "raw": "{{base_url}}/accounts", "host": ["{{base_url}}"], "path": ["accounts"] },
             "body": {
               "mode": "raw",
               "raw": "{\n  \"accountNumber\": \"225487\",\n  \"accountType\": \"CHECKING\",\n  \"initialBalance\": 100,\n  \"active\": true,\n  \"customerId\": 2\n}"
@@ -120,7 +116,7 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{account_url}}/accounts", "host": ["{{account_url}}"], "path": ["accounts"] },
+            "url": { "raw": "{{base_url}}/accounts", "host": ["{{base_url}}"], "path": ["accounts"] },
             "body": {
               "mode": "raw",
               "raw": "{\n  \"accountNumber\": \"495878\",\n  \"accountType\": \"SAVING\",\n  \"initialBalance\": 0,\n  \"active\": true,\n  \"customerId\": 2\n}"
@@ -132,7 +128,7 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{account_url}}/accounts", "host": ["{{account_url}}"], "path": ["accounts"] },
+            "url": { "raw": "{{base_url}}/accounts", "host": ["{{base_url}}"], "path": ["accounts"] },
             "body": {
               "mode": "raw",
               "raw": "{\n  \"accountNumber\": \"496825\",\n  \"accountType\": \"CHECKING\",\n  \"initialBalance\": 540,\n  \"active\": true,\n  \"customerId\": 3\n}"
@@ -143,21 +139,21 @@
           "name": "Find All Accounts",
           "request": {
             "method": "GET",
-            "url": { "raw": "{{account_url}}/accounts", "host": ["{{account_url}}"], "path": ["accounts"] }
+            "url": { "raw": "{{base_url}}/accounts", "host": ["{{base_url}}"], "path": ["accounts"] }
           }
         },
         {
           "name": "Find Account by Number",
           "request": {
             "method": "GET",
-            "url": { "raw": "{{account_url}}/accounts/478758", "host": ["{{account_url}}"], "path": ["accounts", "478758"] }
+            "url": { "raw": "{{base_url}}/accounts/478758", "host": ["{{base_url}}"], "path": ["accounts", "478758"] }
           }
         },
         {
           "name": "Delete Account",
           "request": {
             "method": "DELETE",
-            "url": { "raw": "{{account_url}}/accounts/1", "host": ["{{account_url}}"], "path": ["accounts", "1"] }
+            "url": { "raw": "{{base_url}}/accounts/1", "host": ["{{base_url}}"], "path": ["accounts", "1"] }
           }
         },
         {
@@ -165,7 +161,7 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{account_url}}/movements", "host": ["{{account_url}}"], "path": ["movements"] },
+            "url": { "raw": "{{base_url}}/movements", "host": ["{{base_url}}"], "path": ["movements"] },
             "body": {
               "mode": "raw",
               "raw": "{\n  \"accountNumber\": \"478758\",\n  \"movementType\": \"DEBIT\",\n  \"value\": 575\n}"
@@ -177,7 +173,7 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{account_url}}/movements", "host": ["{{account_url}}"], "path": ["movements"] },
+            "url": { "raw": "{{base_url}}/movements", "host": ["{{base_url}}"], "path": ["movements"] },
             "body": {
               "mode": "raw",
               "raw": "{\n  \"accountNumber\": \"225487\",\n  \"movementType\": \"CREDIT\",\n  \"value\": 600\n}"
@@ -189,7 +185,7 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{account_url}}/movements", "host": ["{{account_url}}"], "path": ["movements"] },
+            "url": { "raw": "{{base_url}}/movements", "host": ["{{base_url}}"], "path": ["movements"] },
             "body": {
               "mode": "raw",
               "raw": "{\n  \"accountNumber\": \"495878\",\n  \"movementType\": \"DEBIT\",\n  \"value\": 1000\n}"
@@ -200,7 +196,7 @@
           "name": "Find Movement by ID",
           "request": {
             "method": "GET",
-            "url": { "raw": "{{account_url}}/movements/1", "host": ["{{account_url}}"], "path": ["movements", "1"] }
+            "url": { "raw": "{{base_url}}/movements/1", "host": ["{{base_url}}"], "path": ["movements", "1"] }
           }
         },
         {
@@ -208,8 +204,8 @@
           "request": {
             "method": "GET",
             "url": {
-              "raw": "{{account_url}}/movements?accountNumber=478758",
-              "host": ["{{account_url}}"],
+              "raw": "{{base_url}}/movements?accountNumber=478758",
+              "host": ["{{base_url}}"],
               "path": ["movements"],
               "query": [{ "key": "accountNumber", "value": "478758" }]
             }
@@ -220,8 +216,8 @@
           "request": {
             "method": "GET",
             "url": {
-              "raw": "{{account_url}}/reports?customerId=1&startDate=2024-01-01&endDate=2026-12-31",
-              "host": ["{{account_url}}"],
+              "raw": "{{base_url}}/reports?customerId=1&startDate=2024-01-01&endDate=2026-12-31",
+              "host": ["{{base_url}}"],
               "path": ["reports"],
               "query": [
                 { "key": "customerId", "value": "1" },
