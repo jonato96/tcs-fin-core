@@ -7,9 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ms-discovery" />
         <module name="ms-config" />
       </profile>
-      <profile name="Annotation profile for account" enabled="true">
+      <profile name="Annotation profile for customer" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -27,6 +28,7 @@
       <module name="ms-account" options="-parameters" />
       <module name="ms-config" options="-parameters" />
       <module name="ms-customer" options="-parameters" />
+      <module name="ms-discovery" options="-parameters" />
     </option>
   </component>
 </project>

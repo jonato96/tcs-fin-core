@@ -42,6 +42,25 @@ services:
       timeout: 5s
       retries: 5
 
+  ms-discovery:
+    build:
+      context: ./ms-discovery
+      dockerfile: Dockerfile
+    container_name: ms-discovery
+    ports:
+      - "8761:8761"
+    environment:
+      CONFIG_SERVER_URL: http://ms-config:8888
+      EUREKA_HOST: ms-discovery
+    depends_on:
+      ms-config:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8761/actuator/health | grep UP || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   ms-customer:
     build:
       context: ./ms-customer
@@ -51,6 +70,7 @@ services:
       - "8081:8081"
     environment:
       CONFIG_SERVER_URL: http://ms-config:8888
+      EUREKA_URL: http://ms-discovery:8761/eureka/
       DB_HOST: postgres
       DB_PORT: 5432
       DB_NAME: tcs_customer
@@ -67,6 +87,8 @@ services:
         condition: service_healthy
       ms-config:
         condition: service_healthy
+      ms-discovery:
+        condition: service_healthy
 
   ms-account:
     build:
@@ -77,6 +99,7 @@ services:
       - "8082:8082"
     environment:
       CONFIG_SERVER_URL: http://ms-config:8888
+      EUREKA_URL: http://ms-discovery:8761/eureka/
       DB_HOST: postgres
       DB_PORT: 5432
       DB_NAME: tcs_account
@@ -92,6 +115,8 @@ services:
       rabbitmq:
         condition: service_healthy
       ms-config:
+        condition: service_healthy
+      ms-discovery:
         condition: service_healthy
       ms-customer:
         condition: service_started
