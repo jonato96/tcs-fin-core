@@ -1,0 +1,159 @@
+services:
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: tcs-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3.12-management-alpine
+    container_name: tcs-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ms-config:
+    build:
+      context: ./ms-config
+      dockerfile: Dockerfile
+    container_name: ms-config
+    ports:
+      - "8888:8888"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8888/actuator/health | grep UP || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 40s
+
+  ms-discovery:
+    build:
+      context: ./ms-discovery
+      dockerfile: Dockerfile
+    container_name: ms-discovery
+    ports:
+      - "8761:8761"
+    environment:
+      CONFIG_SERVER_URL: http://ms-config:8888
+      EUREKA_HOST: ms-discovery
+    depends_on:
+      ms-config:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8761/actuator/health | grep UP || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 40s
+
+  ms-customer:
+    build:
+      context: ./ms-customer
+      dockerfile: Dockerfile
+    container_name: ms-customer
+    ports:
+      - "8081:8081"
+    environment:
+      CONFIG_SERVER_URL: http://ms-config:8888
+      EUREKA_URL: http://ms-discovery:8761/eureka/
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: tcs_customer
+      DB_USER: postgres
+      DB_PASS: postgres
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: guest
+      RABBITMQ_PASS: guest
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      ms-config:
+        condition: service_healthy
+      ms-discovery:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8081/api/v1/actuator/health | grep UP || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+
+  ms-account:
+    build:
+      context: ./ms-account
+      dockerfile: Dockerfile
+    container_name: ms-account
+    ports:
+      - "8082:8082"
+    environment:
+      CONFIG_SERVER_URL: http://ms-config:8888
+      EUREKA_URL: http://ms-discovery:8761/eureka/
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: tcs_account
+      DB_USER: postgres
+      DB_PASS: postgres
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: guest
+      RABBITMQ_PASS: guest
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      ms-config:
+        condition: service_healthy
+      ms-discovery:
+        condition: service_healthy
+      ms-customer:
+        condition: service_started
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8082/api/v1/actuator/health | grep UP || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+
+  ms-gateway:
+    build:
+      context: ./ms-gateway
+      dockerfile: Dockerfile
+    container_name: ms-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      CONFIG_SERVER_URL: http://ms-config:8888
+      EUREKA_URL: http://ms-discovery:8761/eureka/
+    depends_on:
+      ms-config:
+        condition: service_healthy
+      ms-discovery:
+        condition: service_healthy
+      ms-customer:
+        condition: service_healthy
+      ms-account:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
