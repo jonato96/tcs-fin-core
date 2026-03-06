@@ -2,9 +2,9 @@ package com.tcs.account.util;
 
 import com.tcs.account.domain.Account;
 import com.tcs.account.domain.Movement;
-import com.tcs.account.dto.CustomerResponseDto;
+import com.tcs.account.dto.client.CustomerClientResponseDto;
 import com.tcs.account.dto.ReportLineDto;
-import com.tcs.account.rabbit.CustomerRequestProducer;
+import com.tcs.account.client.CustomerClient;
 import com.tcs.account.service.AccountService;
 import com.tcs.account.service.MovementService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class ReportService {
 
     private final AccountService accountService;
     private final MovementService movementService;
-    private final CustomerRequestProducer customerProducer;
+    private final CustomerClient customerClient;
 
     @Transactional(readOnly = true)
     public List<ReportLineDto> generateReport(Long customerId, LocalDate startDate, LocalDate endDate) {
@@ -29,7 +29,7 @@ public class ReportService {
             throw new IllegalArgumentException("El rango de fechas es incorrecto.");
         }
 
-        CustomerResponseDto customer = customerProducer.findCustomer(customerId);
+        CustomerClientResponseDto customer = customerClient.findCustomer(customerId);
         if (customer == null || !Boolean.TRUE.equals(customer.active())) {
             throw new IllegalArgumentException("Cliente no encontrado o inactivo: " + customerId);
         }

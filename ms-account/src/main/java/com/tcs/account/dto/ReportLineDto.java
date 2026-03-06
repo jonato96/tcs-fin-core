@@ -8,26 +8,26 @@ import java.time.LocalDateTime;
 public record ReportLineDto(
         @JsonProperty("Fecha")
         @JsonFormat(pattern = "d/M/yyyy HH:mm:ss")
-        LocalDateTime fecha,
+        LocalDateTime date,
 
         @JsonProperty("Cliente")
-        String cliente,
+        String customerName,
 
         @JsonProperty("Numero Cuenta")
-        String numeroCuenta,
+        String accountNumber,
 
         @JsonProperty("Tipo")
-        String tipo,
+        String accountType,
 
         @JsonProperty("Saldo Inicial")
-        BigDecimal saldoInicial,
+        BigDecimal initialBalance,
 
         @JsonProperty("Estado")
-        Boolean estado,
+        Boolean active,
 
         @JsonProperty("Movimiento")
-        BigDecimal movimiento,
+        BigDecimal movement,
 
         @JsonProperty("Saldo Disponible")
-        BigDecimal saldoDisponible
+        BigDecimal availableBalance
 ) {}

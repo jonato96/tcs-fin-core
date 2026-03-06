@@ -4,7 +4,7 @@ import com.tcs.customer.domain.Customer;
 import com.tcs.customer.domain.Gender;
 import com.tcs.customer.dto.CustomerRequestDto;
 import com.tcs.customer.dto.CustomerResponseDto;
-import com.tcs.customer.exception.CustomerNotFoundException;
+import com.tcs.customer.domain.exception.CustomerNotFoundException;
 import com.tcs.customer.mapper.CustomerMapper;
 import com.tcs.customer.repository.CustomerRepository;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,6 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

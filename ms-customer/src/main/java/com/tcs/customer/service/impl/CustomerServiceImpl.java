@@ -3,7 +3,7 @@ package com.tcs.customer.service.impl;
 import com.tcs.customer.domain.Customer;
 import com.tcs.customer.dto.CustomerRequestDto;
 import com.tcs.customer.dto.CustomerResponseDto;
-import com.tcs.customer.exception.CustomerNotFoundException;
+import com.tcs.customer.domain.exception.CustomerNotFoundException;
 import com.tcs.customer.mapper.CustomerMapper;
 import com.tcs.customer.repository.CustomerRepository;
 import com.tcs.customer.service.CustomerService;

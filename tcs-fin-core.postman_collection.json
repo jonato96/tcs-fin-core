@@ -21,7 +21,7 @@
             "url": { "raw": "{{base_url}}/customers", "host": ["{{base_url}}"], "path": ["customers"] },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Jose Lema\",\n  \"gender\": \"MALE\",\n  \"age\": 30,\n  \"identification\": \"1234567890\",\n  \"address\": \"Otavalo sn y principal\",\n  \"phone\": \"098254785\",\n  \"password\": \"1234\"\n}"
+              "raw": "{\n  \"name\": \"Jose Lema\",\n  \"gender\": \"MALE\",\n  \"age\": 30,\n  \"identification\": \"1234567890\",\n  \"address\": \"Otavalo sn y principal\",\n  \"phone\": \"0982547850\",\n  \"password\": \"12345678\"\n}"
             }
           }
         },
@@ -33,7 +33,7 @@
             "url": { "raw": "{{base_url}}/customers", "host": ["{{base_url}}"], "path": ["customers"] },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Marianela Montalvo\",\n  \"gender\": \"FEMALE\",\n  \"age\": 25,\n  \"identification\": \"0987654321\",\n  \"address\": \"Amazonas y NNUU\",\n  \"phone\": \"097548965\",\n  \"password\": \"5678\"\n}"
+              "raw": "{\n  \"name\": \"Marianela Montalvo\",\n  \"gender\": \"FEMALE\",\n  \"age\": 25,\n  \"identification\": \"0987654321\",\n  \"address\": \"Amazonas y NNUU\",\n  \"phone\": \"0975489650\",\n  \"password\": \"56781234\"\n}"
             }
           }
         },
@@ -45,7 +45,7 @@
             "url": { "raw": "{{base_url}}/customers", "host": ["{{base_url}}"], "path": ["customers"] },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Juan Osorio\",\n  \"gender\": \"MALE\",\n  \"age\": 35,\n  \"identification\": \"1122334455\",\n  \"address\": \"13 junio y Equinoccial\",\n  \"phone\": \"098874587\",\n  \"password\": \"1245\"\n}"
+              "raw": "{\n  \"name\": \"Juan Osorio\",\n  \"gender\": \"MALE\",\n  \"age\": 35,\n  \"identification\": \"1122334455\",\n  \"address\": \"13 junio y Equinoccial\",\n  \"phone\": \"0988745870\",\n  \"password\": \"12451234\"\n}"
             }
           }
         },
@@ -71,7 +71,7 @@
             "url": { "raw": "{{base_url}}/customers/1", "host": ["{{base_url}}"], "path": ["customers", "1"] },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Jose Lema\",\n  \"gender\": \"MALE\",\n  \"age\": 31,\n  \"identification\": \"1234567890\",\n  \"address\": \"Otavalo sn y principal\",\n  \"phone\": \"098254785\",\n  \"password\": \"1234\"\n}"
+              "raw": "{\n  \"name\": \"Jose Lema\",\n  \"gender\": \"MALE\",\n  \"age\": 31,\n  \"identification\": \"1234567890\",\n  \"address\": \"Otavalo sn y principal\",\n  \"phone\": \"0982547850\",\n  \"password\": \"12345678\"\n}"
             }
           }
         },
@@ -95,7 +95,7 @@
             "url": { "raw": "{{base_url}}/accounts", "host": ["{{base_url}}"], "path": ["accounts"] },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"accountNumber\": \"478758\",\n  \"accountType\": \"SAVING\",\n  \"initialBalance\": 2000,\n  \"active\": true,\n  \"customerId\": 1\n}"
+              "raw": "{\n  \"accountNumber\": \"4787580001\",\n  \"accountType\": \"SAVING\",\n  \"initialBalance\": 2000,\n  \"active\": true,\n  \"customerId\": 1\n}"
             }
           }
         },
@@ -107,7 +107,7 @@
             "url": { "raw": "{{base_url}}/accounts", "host": ["{{base_url}}"], "path": ["accounts"] },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"accountNumber\": \"225487\",\n  \"accountType\": \"CHECKING\",\n  \"initialBalance\": 100,\n  \"active\": true,\n  \"customerId\": 2\n}"
+              "raw": "{\n  \"accountNumber\": \"2254870001\",\n  \"accountType\": \"CHECKING\",\n  \"initialBalance\": 100,\n  \"active\": true,\n  \"customerId\": 2\n}"
             }
           }
         },
@@ -119,7 +119,7 @@
             "url": { "raw": "{{base_url}}/accounts", "host": ["{{base_url}}"], "path": ["accounts"] },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"accountNumber\": \"495878\",\n  \"accountType\": \"SAVING\",\n  \"initialBalance\": 0,\n  \"active\": true,\n  \"customerId\": 2\n}"
+              "raw": "{\n  \"accountNumber\": \"4958780001\",\n  \"accountType\": \"SAVING\",\n  \"initialBalance\": 0,\n  \"active\": true,\n  \"customerId\": 2\n}"
             }
           }
         },
@@ -131,7 +131,7 @@
             "url": { "raw": "{{base_url}}/accounts", "host": ["{{base_url}}"], "path": ["accounts"] },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"accountNumber\": \"496825\",\n  \"accountType\": \"CHECKING\",\n  \"initialBalance\": 540,\n  \"active\": true,\n  \"customerId\": 3\n}"
+              "raw": "{\n  \"accountNumber\": \"4968250001\",\n  \"accountType\": \"CHECKING\",\n  \"initialBalance\": 540,\n  \"active\": true,\n  \"customerId\": 3\n}"
             }
           }
         },
@@ -146,7 +146,7 @@
           "name": "Find Account by Number",
           "request": {
             "method": "GET",
-            "url": { "raw": "{{base_url}}/accounts/478758", "host": ["{{base_url}}"], "path": ["accounts", "478758"] }
+            "url": { "raw": "{{base_url}}/accounts/4787580001", "host": ["{{base_url}}"], "path": ["accounts", "4787580001"] }
           }
         },
         {
@@ -164,7 +164,7 @@
             "url": { "raw": "{{base_url}}/movements", "host": ["{{base_url}}"], "path": ["movements"] },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"accountNumber\": \"478758\",\n  \"movementType\": \"DEBIT\",\n  \"value\": 575\n}"
+              "raw": "{\n  \"accountNumber\": \"4787580001\",\n  \"movementType\": \"DEBIT\",\n  \"value\": 575\n}"
             }
           }
         },
@@ -176,7 +176,7 @@
             "url": { "raw": "{{base_url}}/movements", "host": ["{{base_url}}"], "path": ["movements"] },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"accountNumber\": \"225487\",\n  \"movementType\": \"CREDIT\",\n  \"value\": 600\n}"
+              "raw": "{\n  \"accountNumber\": \"2254870001\",\n  \"movementType\": \"CREDIT\",\n  \"value\": 600\n}"
             }
           }
         },
@@ -188,7 +188,7 @@
             "url": { "raw": "{{base_url}}/movements", "host": ["{{base_url}}"], "path": ["movements"] },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"accountNumber\": \"495878\",\n  \"movementType\": \"DEBIT\",\n  \"value\": 1000\n}"
+              "raw": "{\n  \"accountNumber\": \"4958780001\",\n  \"movementType\": \"DEBIT\",\n  \"value\": 1000\n}"
             }
           }
         },
@@ -204,10 +204,10 @@
           "request": {
             "method": "GET",
             "url": {
-              "raw": "{{base_url}}/movements?accountNumber=478758",
+              "raw": "{{base_url}}/movements?accountNumber=4787580001",
               "host": ["{{base_url}}"],
               "path": ["movements"],
-              "query": [{ "key": "accountNumber", "value": "478758" }]
+              "query": [{ "key": "accountNumber", "value": "4787580001" }]
             }
           }
         },

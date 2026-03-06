@@ -1,4 +1,4 @@
-package com.tcs.customer.rabbit;
+package com.tcs.customer.messaging;
 
 import com.tcs.customer.config.RabbitMQConfig;
 import com.tcs.customer.dto.CustomerResponseDto;
@@ -12,12 +12,13 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CustomerConsumer {
+public class RabbitMQCustomerQueryHandler implements CustomerQueryHandler {
 
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
 
     @RabbitListener(queues = RabbitMQConfig.CUSTOMER_QUEUE)
+    @Override
     public CustomerResponseDto findCustomer(Long customerId) {
         log.debug("RabbitMQ request received for customerId: {}", customerId);
         return customerRepository.findById(customerId)

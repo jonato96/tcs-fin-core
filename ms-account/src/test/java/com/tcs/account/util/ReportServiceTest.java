@@ -4,9 +4,9 @@ import com.tcs.account.domain.Account;
 import com.tcs.account.domain.AccountType;
 import com.tcs.account.domain.Movement;
 import com.tcs.account.domain.MovementType;
-import com.tcs.account.dto.CustomerResponseDto;
+import com.tcs.account.dto.client.CustomerClientResponseDto;
 import com.tcs.account.dto.ReportLineDto;
-import com.tcs.account.rabbit.CustomerRequestProducer;
+import com.tcs.account.client.CustomerClient;
 import com.tcs.account.service.AccountService;
 import com.tcs.account.service.MovementService;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ class ReportServiceTest {
     @Mock
     private MovementService movementService;
     @Mock
-    private CustomerRequestProducer customerProducer;
+    private CustomerClient customerClient;
     @InjectMocks
     private ReportService reportService;
 
@@ -45,7 +45,7 @@ class ReportServiceTest {
 
     @Test
     void generateReport_whenCustomerIsInactive_throwsException() {
-        when(customerProducer.findCustomer(1L)).thenReturn(new CustomerResponseDto(1L, "Jose Lema", false));
+        when(customerClient.findCustomer(1L)).thenReturn(new CustomerClientResponseDto(1L, "Jose Lema", false));
 
         assertThrows(IllegalArgumentException.class, () ->
                 reportService.generateReport(1L, LocalDate.of(2022, 1, 1), LocalDate.of(2022, 12, 31)));
@@ -53,7 +53,7 @@ class ReportServiceTest {
 
     @Test
     void generateReport_whenCustomerHasNoAccounts_throwsException() {
-        when(customerProducer.findCustomer(1L)).thenReturn(new CustomerResponseDto(1L, "Jose Lema", true));
+        when(customerClient.findCustomer(1L)).thenReturn(new CustomerClientResponseDto(1L, "Jose Lema", true));
         when(accountService.findByCustomerId(1L)).thenReturn(List.of());
 
         assertThrows(IllegalArgumentException.class, () ->
@@ -78,7 +78,7 @@ class ReportServiceTest {
                 .balanceAfter(BigDecimal.valueOf(700))
                 .account(account).build();
 
-        when(customerProducer.findCustomer(1L)).thenReturn(new CustomerResponseDto(1L, "Marianela Montalvo", true));
+        when(customerClient.findCustomer(1L)).thenReturn(new CustomerClientResponseDto(1L, "Marianela Montalvo", true));
         when(accountService.findByCustomerId(1L)).thenReturn(List.of(account));
         when(movementService.findByAccountAndDates(eq(1L), any(), any())).thenReturn(List.of(movement));
 
@@ -86,8 +86,8 @@ class ReportServiceTest {
 
         assertNotNull(result);
         assertEquals(1, result.size());
-        assertEquals("Marianela Montalvo", result.get(0).cliente());
-        assertEquals("225487", result.get(0).numeroCuenta());
-        assertEquals(BigDecimal.valueOf(700), result.get(0).saldoDisponible());
+        assertEquals("Marianela Montalvo", result.get(0).customerName());
+        assertEquals("225487", result.get(0).accountNumber());
+        assertEquals(BigDecimal.valueOf(700), result.get(0).availableBalance());
     }
 }

@@ -1,4 +1,4 @@
-package com.tcs.customer.exception;
+package com.tcs.customer.domain.exception;
 
 public class CustomerNotFoundException extends RuntimeException {
     public CustomerNotFoundException(Long id) {

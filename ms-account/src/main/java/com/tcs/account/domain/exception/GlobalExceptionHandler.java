@@ -1,8 +1,5 @@
-package com.tcs.account.exception;
+package com.tcs.account.domain.exception;
 
-import com.tcs.account.domain.exception.AccountNotFoundException;
-import com.tcs.account.domain.exception.InsufficientBalanceException;
-import com.tcs.account.domain.exception.MovementNotFoundException;
 import org.springframework.http.*;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;

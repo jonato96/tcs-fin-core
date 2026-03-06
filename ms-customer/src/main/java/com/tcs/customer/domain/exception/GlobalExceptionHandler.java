@@ -1,4 +1,4 @@
-package com.tcs.customer.exception;
+package com.tcs.customer.domain.exception;
 
 import org.springframework.http.*;
 import org.springframework.web.bind.MethodArgumentNotValidException;

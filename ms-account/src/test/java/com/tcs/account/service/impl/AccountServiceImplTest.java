@@ -5,9 +5,9 @@ import com.tcs.account.domain.AccountType;
 import com.tcs.account.domain.exception.AccountNotFoundException;
 import com.tcs.account.dto.AccountRequestDto;
 import com.tcs.account.dto.AccountResponseDto;
-import com.tcs.account.dto.CustomerResponseDto;
+import com.tcs.account.dto.client.CustomerClientResponseDto;
 import com.tcs.account.mapper.AccountMapper;
-import com.tcs.account.rabbit.CustomerRequestProducer;
+import com.tcs.account.client.CustomerClient;
 import com.tcs.account.repository.AccountRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,7 +30,7 @@ class AccountServiceImplTest {
     @Mock
     private AccountMapper accountMapper;
     @Mock
-    private CustomerRequestProducer customerProducer;
+    private CustomerClient customerClient;
     @InjectMocks
     private AccountServiceImpl accountService;
 
@@ -49,7 +49,7 @@ class AccountServiceImplTest {
         AccountRequestDto dto = new AccountRequestDto("478758", AccountType.SAVING, BigDecimal.valueOf(2000), true, 1L);
 
         when(accountRepository.existsByAccountNumber("478758")).thenReturn(false);
-        when(customerProducer.findCustomer(1L)).thenReturn(new CustomerResponseDto(1L, "Jose Lema", false));
+        when(customerClient.findCustomer(1L)).thenReturn(new CustomerClientResponseDto(1L, "Jose Lema", false));
 
         assertThrows(IllegalArgumentException.class, () -> accountService.create(dto));
         verify(accountRepository, never()).save(any());
@@ -65,7 +65,7 @@ class AccountServiceImplTest {
                 BigDecimal.valueOf(2000), BigDecimal.valueOf(2000), true, 1L, "Jose Lema");
 
         when(accountRepository.existsByAccountNumber("478758")).thenReturn(false);
-        when(customerProducer.findCustomer(1L)).thenReturn(new CustomerResponseDto(1L, "Jose Lema", true));
+        when(customerClient.findCustomer(1L)).thenReturn(new CustomerClientResponseDto(1L, "Jose Lema", true));
         when(accountMapper.toEntity(dto)).thenReturn(entity);
         when(accountRepository.save(entity)).thenReturn(entity);
         when(accountMapper.toResponseDto(entity, "Jose Lema")).thenReturn(expected);
